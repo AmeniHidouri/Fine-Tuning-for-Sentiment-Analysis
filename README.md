@@ -1,76 +1,76 @@
-🧠 Fine-Tuning d’un Modèle de Sentiment avec PEFT (LoRA)
+# 🧠 Fine-Tuning d’un Modèle de Sentiment avec PEFT (LoRA)
 
-Ce projet montre comment spécialiser un modèle de langage pré-entraîné pour une tâche de classification de sentiment, en utilisant une approche moderne et efficace : PEFT (Parameter-Efficient Fine-Tuning) avec LoRA (Low-Rank Adaptation).
-L’objectif est de fine-tuner DistilBERT sur le dataset IMDB pour déterminer si une critique de film est positive ou négative.
+Ce projet démontre comment fine-tuner un modèle pré-entraîné pour l’**analyse de sentiment** à l’aide de techniques modernes de **PEFT (Parameter-Efficient Fine-Tuning)** et plus précisément **LoRA (Low-Rank Adaptation)**.  
+L'objectif est d’adapter `distilbert-base-uncased` sur le dataset **IMDB** pour classifier des critiques de films en *positif* ou *négatif*.
 
-🚀 Contexte Technologique
-🎯 Qu’est-ce que le Fine-Tuning ?
+---
 
-Le fine-tuning consiste à adapter un grand modèle pré-entraîné (comme BERT) à une tâche spécifique en continuant son entraînement sur un petit dataset spécialisé. Cela permet de transférer ses connaissances générales vers une compétence ciblée (ex : analyse de sentiment).
+## 🚀 Contexte Technologique
 
-⚙️ Pourquoi PEFT et LoRA ?
+### 🔍 Qu’est-ce que le Fine-Tuning ?
+Le fine-tuning consiste à adapter un grand modèle (comme BERT) à une tâche spécifique. On continue l'entraînement du modèle sur un dataset ciblé afin de lui apprendre une compétence précise sans repartir de zéro.
 
-Fine-tuner tous les paramètres d’un modèle complet est coûteux en GPU. PEFT résout ce problème en gelant la majorité du modèle et en n’entraînant que de petites couches supplémentaires.
+### ⚙️ Pourquoi PEFT et LoRA ?
+Fine-tuner tous les paramètres d’un modèle complet est coûteux.  
+PEFT permet de **geler le modèle** et de **n’entraîner qu’une petite couche d’adaptation (LoRA)**.
 
-Méthode	Avantages
-PEFT (LoRA)	➤ 0.1% de paramètres entraînés
-➤ Très faible consommation GPU
-➤ Modèle plus rapide & léger
-📦 Installation
-1️⃣ Prérequis
+| Approche | Avantages |
+|----------|----------|
+| **LoRA (PEFT)** | 🔹 0.1% des paramètres entraînés<br>🔹 Entraînement + rapide<br>🔹 Moins de mémoire GPU<br>🔹 Pas d’oubli des connaissances |
 
-Python 3.8+
+---
 
-pip ou conda
+## 📦 Installation
 
-2️⃣ Installation du projet
+### 1️⃣ Prérequis
+- Python 3.8+
+- `pip` ou `conda`
+
+### 2️⃣ Installation du projet
+
+```bash
 # Cloner le dépôt
 git clone [URL_DE_VOTRE_DEPOT_GITHUB]
 cd [NOM_DU_DEPOT]
-
+```
+📌 Le fichier requirements.txt doit contenir :
+transformers
+datasets
+evaluate
+peft
+torch
+```bash
 # Installer les dépendances
 pip install -r requirements.txt
-
-
-🔍 Le fichier requirements.txt doit contenir :
-transformers, datasets, evaluate, peft, torch
-
+```
 ▶️ Exécution
 python fine_tune_sentiment.py
 
 🧪 Pipeline du Script fine_tune_sentiment.py
 Étape	Description
-1. Chargement des données	Dataset IMDB via datasets
-2. Initialisation du modèle	distilbert-base-uncased + Tokenizer
-3. Configuration LoRA	Définition d'une LoraConfig (r, alpha, dropout)
-4. Tokenisation	Préparation des critiques en entrée modèle
-5. Entraînement (Trainer)	Fine-tuning des adaptateurs LoRA uniquement
-6. Évaluation	Calcul de la précision (accuracy)
-7. Inférence	Prédictions sur de nouvelles phrases
+1️⃣ Chargement des données	IMDB dataset via datasets
+2️⃣ Modèle de base	distilbert-base-uncased + Tokenizer
+3️⃣ Configuration LoRA	Création d’un LoraConfig
+4️⃣ Prétraitement	Tokenisation des critiques
+5️⃣ Entraînement (Trainer)	Fine-tuning PEFT (LoRA uniquement)
+6️⃣ Évaluation	Accuracy sur le set de test
+7️⃣ Inférence	Prédictions sur phrases nouvelles
 📊 Résultats Attendus
-
-Après entraînement, vous devriez voir :
-
 Final evaluation results:
 {'eval_loss': 0.35, 'eval_accuracy': 0.85, ...}
 
 
-Prédictions exemple :
+Exemples de prédictions :
 
-Review: "This movie was absolutely fantastic!"
-Prediction: [{'label': 'POSITIVE', 'score': 0.99}]
+Review: "This movie was fantastic!"
+Prediction: POSITIVE (0.99)
 
-Review: "I was really disappointed by this film."
-Prediction: [{'label': 'NEGATIVE', 'score': 0.99}]
+Review: "I was disappointed..."
+Prediction: NEGATIVE (0.99)
 
-🧭 Pourquoi ce Projet est Important ?
+🧭 Intérêt du Projet
 
-✅ Comprendre les méthodes modernes de fine-tuning (PEFT)
-✅ Réduire les coûts GPU tout en conservant les performances
-✅ Préparer le terrain pour appliquer LoRA sur des LLMs (ChatGPT, LLaMa, Mistral)
+✅ Comprendre PEFT & LoRA pour réduire le coût GPU
+✅ Préparer l’entraînement de LLMs (ChatGPT, LLaMA, Mistral)
+✅ Base solide pour des projets NLP avancés
 
-🛡️ Licence
-
-Ce projet est sous licence MIT — libre à vous de le modifier et l'adapter !
-
-🎯 Prêt(e) à fine-tuner des LLM avec LoRA ? Ce projet est votre point de départ.
