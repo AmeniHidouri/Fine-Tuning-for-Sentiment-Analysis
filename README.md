@@ -1,4 +1,3 @@
-# Fine-Tuning-for-Sentiment-Analysis
 Fine-Tuning d'un Modèle de Sentiment avec PEFT (LoRA)
 Ce projet est une démonstration pratique du fine-tuning d'un modèle de classification de texte pour l'analyse de sentiment. Il utilise la bibliothèque Hugging Face transformers et implémente une méthode de fine-tuning avancée et efficace appelée PEFT (Parameter-Efficient Fine-Tuning) avec la technique LoRA (Low-Rank Adaptation).
 
