@@ -71,6 +71,8 @@ Prediction: NEGATIVE (0.99)
 🧭 Intérêt du Projet
 
 ✅ Comprendre PEFT & LoRA pour réduire le coût GPU
+
 ✅ Préparer l’entraînement de LLMs (ChatGPT, LLaMA, Mistral)
+
 ✅ Base solide pour des projets NLP avancés
 
